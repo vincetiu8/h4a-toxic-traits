@@ -1,0 +1,9 @@
+.traitsMainContainer {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.toxicCard {
+    margin: 4em auto;
+}
