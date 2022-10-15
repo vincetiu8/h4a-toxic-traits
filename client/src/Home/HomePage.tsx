@@ -72,6 +72,14 @@ function HomePage() {
   const message = `Welcome to the Boilerplate, ${user.firstName} ${user.lastName}!`;
   return (
     <ScreenGrid>
+      <Grid item container justifyContent="center">
+        <Button
+          onClick={() => navigator('/toxic', { replace: true })}
+          sx={{ backgroundColor: 'purple', color: 'white', margin: 4 }}
+        >
+          Toxic Traits
+        </Button>
+      </Grid>
       <Typography variant="h2">{message}</Typography>
       <Grid item container justifyContent="center">
         <PromoteButton
