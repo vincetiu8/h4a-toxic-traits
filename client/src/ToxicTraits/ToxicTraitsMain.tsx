@@ -2,7 +2,6 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ToxicTraitsUser from './ToxicTraitsUser';
-import './ToxicTraits.css';
 
 const ToxicUsers = [
   {
@@ -34,7 +33,15 @@ const ToxicUsers = [
 
 function ToxicTraitsMain() {
   return (
-    <Box sx={{ backgroundColor: 'primary' }} className="traitsMainContainer">
+    <Box
+      sx={{
+        backgroundColor: 'primary',
+        display: 'flex',
+        justify: 'center',
+        minHeight: '100vh',
+      }}
+      className="traitsMainContainer"
+    >
       <Grid container spacing={2}>
         {ToxicUsers.map(({ name, image }) => (
           <Grid item xs={4}>

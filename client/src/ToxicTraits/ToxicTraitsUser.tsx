@@ -11,7 +11,7 @@ export default function ToxicTraitsUser(props: {
 }) {
   const { name, image } = props;
   return (
-    <Card sx={{ maxWidth: 345 }} className="toxicCard">
+    <Card sx={{ maxWidth: 345, margin: '4em auto' }} className="toxicCard">
       <CardActionArea>
         <CardMedia
           component="img"
