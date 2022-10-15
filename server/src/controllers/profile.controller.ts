@@ -6,10 +6,12 @@ import express from 'express';
 import ApiError from '../util/apiError';
 import StatusCode from '../util/statusCode';
 import {
+  addToxicTraitToProfileInDB,
   createProfileInDB,
   deleteProfileByIdFromDB,
   getAllProfilesFromDB,
   getProfileByIdFromDB,
+  removeToxicTraitFromProfileInDB,
 } from '../services/profile.service';
 
 /**
@@ -86,6 +88,60 @@ const getProfileById = async (
 };
 
 /**
+ * Add a toxic trait to a profile in the database. The id of the profile is expected to be in the request parameter (url). The toxic trait is expected in the JSON body. Send a 200 OK status code on success.
+ */
+const addToxicTrait = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  const { id } = req.params;
+  const { trait } = req.body;
+  if (!id) {
+    next(ApiError.missingFields(['id']));
+    return;
+  }
+  if (!trait) {
+    next(ApiError.missingFields(['trait']));
+    return;
+  }
+
+  addToxicTraitToProfileInDB(id, trait)
+    .then(() => res.sendStatus(StatusCode.OK))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    .catch((e) => {
+      next(ApiError.internal('Failed to add toxic trait.'));
+    });
+};
+
+/**
+ * Remove a toxic trait from a profile in the database. The id of the profile is expected to be in the request parameter (url). The toxic trait is expected in the JSON body. Send a 200 OK status code on success.
+ */
+const removeToxicTrait = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  const { id } = req.params;
+  const { trait } = req.body;
+  if (!id) {
+    next(ApiError.missingFields(['id']));
+    return;
+  }
+  if (!trait) {
+    next(ApiError.missingFields(['trait']));
+    return;
+  }
+
+  removeToxicTraitFromProfileInDB(id, trait)
+    .then(() => res.sendStatus(StatusCode.OK))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    .catch((e) => {
+      next(ApiError.internal('Failed to remove toxic trait.'));
+    });
+};
+
+/**
  * Delete a profile from the database. The id of the profile is expected to be in the request parameter (url). Send a 200 OK status code on success.
  */
 const deleteProfile = async (
@@ -107,4 +163,11 @@ const deleteProfile = async (
     });
 };
 
-export { createProfile, getAllProfiles, getProfileById, deleteProfile };
+export {
+  createProfile,
+  getAllProfiles,
+  getProfileById,
+  addToxicTrait,
+  removeToxicTrait,
+  deleteProfile,
+};

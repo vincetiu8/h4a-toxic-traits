@@ -39,6 +39,35 @@ const getAllProfilesFromDB = async () => {
 };
 
 /**
+ * A function that adds a toxic trait to a profile.
+ * @param id The id of the profile to add the toxic trait to.
+ * @param toxicTrait The toxic trait to add to the profile.
+ */
+const addToxicTraitToProfileInDB = async (id: string, toxicTrait: string) => {
+  return Profile.findByIdAndUpdate(
+    id,
+    { $push: { toxicTraits: toxicTrait } },
+    { new: true },
+  ).exec();
+};
+
+/**
+ * A function that removes a toxic trait from a profile.
+ * @param id The id of the profile to remove the toxic trait from.
+ * @param toxicTrait The toxic trait to remove from the profile.
+ */
+const removeToxicTraitFromProfileInDB = async (
+  id: string,
+  toxicTrait: string,
+) => {
+  return Profile.findByIdAndUpdate(
+    id,
+    { $pull: { toxicTraits: toxicTrait } },
+    { new: true },
+  ).exec();
+};
+
+/**
  * A function that deletes a profile from the database.
  * @param id The id of the profile to delete.
  * @returns The deleted {@link Profile}
@@ -51,5 +80,7 @@ export {
   createProfileInDB,
   getProfileByIdFromDB,
   getAllProfilesFromDB,
+  addToxicTraitToProfileInDB,
+  removeToxicTraitFromProfileInDB,
   deleteProfileByIdFromDB,
 };
