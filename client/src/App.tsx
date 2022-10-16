@@ -21,6 +21,7 @@ import LoginPage from './Authentication/LoginPage';
 import EmailResetPasswordPage from './Authentication/EmailResetPasswordPage';
 import ResetPasswordPage from './Authentication/ResetPasswordPage';
 import ToxicTraitsMain from './ToxicTraits/ToxicTraitsMain';
+import ToxicUser from './ToxicTraits/ToxicUser';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                   <Route element={<ProtectedRoutesWrapper />}>
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/toxic" element={<ToxicTraitsMain />} />
+                    <Route path="/toxic/:id" element={<ToxicUser />} />
                   </Route>
                   <Route element={<AdminRoutesWrapper />}>
                     <Route path="/users" element={<AdminDashboardPage />} />
