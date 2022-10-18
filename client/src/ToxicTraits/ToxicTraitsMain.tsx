@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import axios from 'axios';
-import ToxicTraitsUser from './ToxicTraitsUser';
+import UserCard from './UserCard';
 import { getData } from '../util/api';
 
 function ToxicTraitsMain() {
@@ -10,7 +9,6 @@ function ToxicTraitsMain() {
 
   const fetchData = () => {
     getData('profile/all').then((res) => {
-      console.log(res.data);
       setUsers(
         res.data.map(
           (user: {
@@ -44,9 +42,9 @@ function ToxicTraitsMain() {
       className="traitsMainContainer"
     >
       <Grid container spacing={2}>
-        {users.map((user: { name: string; image: string }) => (
+        {users.map((user: { id: string; name: string; image: string }) => (
           <Grid item xs={4}>
-            <ToxicTraitsUser name={user.name} image={user.image} />
+            <UserCard id={user.id} name={user.name} image={user.image} />
           </Grid>
         ))}
       </Grid>
