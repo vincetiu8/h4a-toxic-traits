@@ -16,27 +16,29 @@ export default function UserCard({
   image: string;
 }) {
   return (
-    <Card sx={{ maxWidth: 345, margin: '4em auto' }} className="toxicCard">
-      <CardActionArea>
-        <Link to={`/profiles/${id}`}>
-          <CardMedia
-            component="img"
-            height="250"
-            image={image}
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              sx={{ textAlign: 'center' }}
-            >
-              {name}
-            </Typography>
-          </CardContent>
-        </Link>
-      </CardActionArea>
-    </Card>
+    <div>
+      <Card sx={{ maxWidth: 345, margin: '4em auto' }} className="toxicCard">
+        <CardActionArea>
+          <Link to={`/profile/${id}`}>
+            <CardMedia
+              component="img"
+              height="250"
+              image={image}
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{ textAlign: 'center' }}
+              >
+                {name}
+              </Typography>
+            </CardContent>
+          </Link>
+        </CardActionArea>
+      </Card>
+    </div>
   );
 }

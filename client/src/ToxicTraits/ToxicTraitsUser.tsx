@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { UrlWithStringQuery } from 'url';
 import { getData } from '../util/api';
 
 export default function ToxicTraitsUser() {
@@ -27,25 +28,25 @@ export default function ToxicTraitsUser() {
   }, [id]);
 
   return (
-    <Card sx={{ maxWidth: 345, margin: '4em auto' }} className="toxicCard">
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="250"
-          image={user.imageURL}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ textAlign: 'center' }}
-          >
-            {`${user.firstName} ${user.lastName}`}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <div>
+      <h1 style={{ textAlign: 'center' }}>
+        What are {user.firstName}&apos;s toxic traits???
+      </h1>
+      <img
+        style={{
+          display: 'block',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          width: '30%',
+          filter: 'contrast(350%)',
+          marginBottom: '50px',
+        }}
+        src={user.imageURL}
+        alt=""
+      />
+      {user.toxicTraits?.map((trait: string) => (
+        <div style={{ textAlign: 'center' }}>{trait}</div>
+      ))}
+    </div>
   );
 }
